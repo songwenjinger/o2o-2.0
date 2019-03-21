@@ -10,6 +10,8 @@ import java.util.List;
 public class AreaServiceTest extends BaseTest {
     @Autowired
     private AreaService areaService;
+    @Autowired
+    private CacheService cacheService;
     @Test
     public void testGetAreaList()
     {
@@ -19,6 +21,7 @@ public class AreaServiceTest extends BaseTest {
         {
             System.out.println(iterator.next());
         }
+       // cacheService.removeFromCache(areaService.AREALISTKEY);
     }
 
 }

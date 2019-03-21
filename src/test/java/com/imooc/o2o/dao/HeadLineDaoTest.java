@@ -13,7 +13,9 @@ public class HeadLineDaoTest extends BaseTest {
     @Test
     public void testQueryArea()
     {
-        List<HeadLine> headLineList=headLineDao.queryHeadLine(new HeadLine());
+        HeadLine headLine=new HeadLine();
+        headLine.setEnableStatus(0);
+        List<HeadLine> headLineList=headLineDao.queryHeadLine(headLine);
         System.out.println(headLineList.size());
     }
 

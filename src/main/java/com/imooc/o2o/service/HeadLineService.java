@@ -3,6 +3,7 @@ package com.imooc.o2o.service;
 import java.io.IOException;
 import java.util.List;
 
+import com.imooc.o2o.cache.JedisUtil;
 import com.imooc.o2o.dto.HeadLineExecution;
 import com.imooc.o2o.entity.HeadLine;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -15,6 +16,7 @@ public interface HeadLineService {
 	 * @return
 	 * @throws IOException
 	 */
+	public static final String HEADLINEKEY="headline";
 	List<HeadLine> getHeadLineList(HeadLine headLineCondition)
 			throws IOException;
 

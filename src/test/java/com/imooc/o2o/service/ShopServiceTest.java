@@ -2,10 +2,7 @@ package com.imooc.o2o.service;
 
 import com.imooc.o2o.dao.BaseTest;
 import com.imooc.o2o.dto.ShopExecution;
-import com.imooc.o2o.entity.Area;
-import com.imooc.o2o.entity.PersonInfo;
-import com.imooc.o2o.entity.Shop;
-import com.imooc.o2o.entity.ShopCategory;
+import com.imooc.o2o.entity.*;
 import com.imooc.o2o.enums.ShopStateEnum;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
@@ -22,10 +19,15 @@ import javax.imageio.ImageIO;
 import java.io.*;
 import java.net.URLDecoder;
 import java.util.Date;
+import java.util.List;
 
 public class ShopServiceTest extends BaseTest {
     @Autowired
     private ShopService shopService;
+    @Autowired
+	private HeadLineService headLineService;
+    @Autowired
+	private ShopCategoryService shopCategoryService;
     @Test
 	public void testAddShop() throws Exception {
 		Shop shop = new Shop();
@@ -112,5 +114,20 @@ public class ShopServiceTest extends BaseTest {
 	}
 
 
-
+	@Test
+	public void testQueryArea() throws IOException {
+		HeadLine headLine=new HeadLine();
+		headLine.setEnableStatus(1);
+		List<HeadLine> headLineList=headLineService.getHeadLineList(headLine);
+		System.out.println(headLineList.size());
+	}
+	@Test
+	public void testQueryShopCategory()
+	{
+		/**
+		 * 传参数为空时，会返回所有的列表
+		 */
+		List<ShopCategory> shopCategoryList=shopCategoryService.getShopCategoryList(null);
+		System.out.println(shopCategoryList.size());
+	}
 }

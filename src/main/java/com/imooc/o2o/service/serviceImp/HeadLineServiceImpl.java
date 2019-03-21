@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import com.imooc.o2o.cache.JedisUtil;
 import com.imooc.o2o.dao.HeadLineDao;
 import com.imooc.o2o.dto.HeadLineExecution;
 import com.imooc.o2o.entity.HeadLine;
@@ -24,10 +25,49 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class HeadLineServiceImpl implements HeadLineService {
 	@Autowired
 	private HeadLineDao headLineDao;
+	@Autowired
+	private JedisUtil.Strings jedisStrings;
+	@Autowired
+	private JedisUtil.Keys jedisKeys;
+
 	@Override
+	@Transactional
 	public List<HeadLine> getHeadLineList(HeadLine headLineCondition)throws IOException
 	{
-		return headLineDao.queryHeadLine(headLineCondition);
+		List<HeadLine> headLineList=new ArrayList<HeadLine>();
+		//定义key
+		String key=HEADLINEKEY;
+		ObjectMapper mapper=new ObjectMapper();
+		//根据mapper中的查询条件拼装key
+		if(headLineCondition!=null&&headLineCondition.getEnableStatus()!=null)
+		{
+			key=key+"_"+headLineCondition.getEnableStatus();
+		}
+		if(!jedisKeys.exists(key))
+		{
+			try
+			{
+				headLineList=headLineDao.queryHeadLine(headLineCondition);
+				String jsonString=mapper.writeValueAsString(headLineList);
+				jedisStrings.set(key,jsonString);
+			}catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+		}else
+		{
+			try{
+				String jsonString=jedisStrings.get(key);
+				JavaType javaType=mapper.getTypeFactory().constructParametricType(ArrayList.class,HeadLine.class);
+				headLineList=mapper.readValue(jsonString,javaType);
+			}catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+
+		}
+	return headLineList;
+
 	}
 
 	@Override
