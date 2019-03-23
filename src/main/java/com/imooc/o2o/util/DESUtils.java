@@ -1,13 +1,12 @@
 package com.imooc.o2o.util;
 
-import java.security.Key;
-import java.security.SecureRandom;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
-
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import java.security.Key;
+import java.security.SecureRandom;
 
 public class DESUtils {
 

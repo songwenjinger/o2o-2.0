@@ -18,5 +18,5 @@ public interface ProductCategoryDao {
      * @return
      */
     int batchInsertProductCategory(List<ProductCategory> productCategoryList);
-    int deleteProductCategory(@Param("productCategoryId") long productCategoryId,@Param("shopId")long shopId);
+    int deleteProductCategory(@Param("productCategoryId") long productCategoryId, @Param("shopId") long shopId);
 }

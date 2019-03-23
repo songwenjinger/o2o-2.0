@@ -2,7 +2,6 @@ package com.imooc.o2o.dao;
 
 import com.imooc.o2o.entity.Shop;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.jmx.export.annotation.ManagedOperationParameter;
 
 import java.util.List;
 
@@ -35,14 +34,14 @@ public interface ShopDao {
      * @param pageSize 返回的条数
      * @return
      */
-    List<Shop> queryShopList(@Param("shopCondition")Shop shopCondition, @Param("rowIndex")int rowIndex, @Param("pageSize")int pageSize);
+    List<Shop> queryShopList(@Param("shopCondition") Shop shopCondition, @Param("rowIndex") int rowIndex, @Param("pageSize") int pageSize);
 
     /**
      * 查询符合分页结果的数据的总条数queryShopList
      * @param shopCondition
      * @return
      */
-    int queryShopCount(@Param("shopCondition")Shop shopCondition);
+    int queryShopCount(@Param("shopCondition") Shop shopCondition);
 
 
 }

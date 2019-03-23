@@ -1,9 +1,9 @@
 package com.imooc.o2o.dao;
 
-import java.util.Date;
-
 import com.imooc.o2o.entity.LocalAuth;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.Date;
 
 
 public interface LocalAuthDao {
@@ -15,7 +15,7 @@ public interface LocalAuthDao {
 	 * @return
 	 */
 	LocalAuth queryLocalByUserNameAndPwd(@Param("userName") String userName,
-										 @Param("password") String password);
+                                         @Param("password") String password);
 
 	/**
 	 * 通过id查询对应localauth

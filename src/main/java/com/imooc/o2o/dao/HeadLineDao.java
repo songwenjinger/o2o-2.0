@@ -1,9 +1,9 @@
 package com.imooc.o2o.dao;
 
-import java.util.List;
-
 import com.imooc.o2o.entity.HeadLine;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 头条读取的相关查询

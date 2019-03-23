@@ -1,6 +1,7 @@
 package com.imooc.o2o.entity;
 
 import java.util.Date;
+
 //图片的详情
 public class ProductImg {
     private Long productImgId;
